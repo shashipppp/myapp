@@ -1,0 +1,40 @@
+<form [formGroup]="Card_Form" (ngSubmit)="onSubmit()" *ngIf="!success" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Title</label>
+    <input formControlName="title"  class="form-control" id="card_title" placeholder="Title" (ngModelChange)="atitle=$event">
+    <div>{{atitle}}</div>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Summary</label>
+    <textarea formControlName="summary" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Category</label>
+    <select formControlName="category" class="form-control" id="exampleFormControlSelect1" >
+      <option>Sport</option>
+      <option>Math</option>
+      <option>Science</option>
+      <option>Language</option>
+      <option>Co-curricular Activities</option>
+    </select>
+  </div>
+ 
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Content</label>
+    <textarea formControlName="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+ 
+  <div class="form-check mb-3">
+    <input class="form-check-input" formControlName="parental_view" type="checkbox">
+    <label class="form-check-label">Parental view</label>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Upload photo</label>
+    <input formControlName="image" type="file" class="form-control-file" id="exampleFormControlFile1" #card_image>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!Card_Form.valid">Register</button>
+</form>
+
+<div *ngIf="success">Card is succesfully submitted</div>
