@@ -1,0 +1,142 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+
+  .example-card {
+    max-width: 300px;
+    
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next{
+      height: 50px;
+      width: 50px;
+      
+  }
+
+  .carousel-control-prev-icon { 
+      background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); 
+      position: relative;
+      top:200px; 
+      width: 100px;
+      height: 48px;
+  }
+  .previous-icon{
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    
+  
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  position: relative;
+      top:200px; 
+      width: 100px;
+      height: 48px;
+  }
+
+  .previous-icon :hover{
+    background-color: #ddd;
+    color: black;
+  }
+  .carousel-control-next-icon { 
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+      width: 100px;
+      height: 48px;
+      position: relative;
+      top:200px; 
+      background-color: #f1f1f1;
+      border-radius: 50%;
+  }
+
+  .carousel-indicators li {
+    display: inline-block;
+    width: 48px;
+    height: 8px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    
+    background-color: #0000ff;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);    
+}
+.carousel-indicators .active {
+    width: 48px;
+    height: 16px;
+    margin: 10px;
+    background-color: #ffff99;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+  

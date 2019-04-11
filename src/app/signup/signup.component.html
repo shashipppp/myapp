@@ -1,0 +1,60 @@
+<div *ngIf="!show">
+<form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input  formControlName="username" class="form-control"  placeholder="Enter username" [class.is-invalid]="signupForm.get('username').invalid && signupForm.get('username').touched">
+    <div *ngIf="signupForm.get('username').errors?.required && signupForm.get('username').touched">
+      <small class="text-danger">username is mandatory</small>
+    </div>
+    <div *ngIf="signupForm.get('username').errors?.pattern && signupForm.get('username').touched">
+      <small class="text-danger">username is mandatory with minmum 6 chars with no special chars</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [class.is-invalid]="signupForm.get('email').invalid && signupForm.get('email').touched">
+    <div *ngIf="signupForm.get('email').errors?.required && signupForm.get('email').touched">
+      <small class="text-danger">email is mandatory</small>
+    </div>
+    <div *ngIf="signupForm.get('email').errors?.pattern && signupForm.get('email').touched">
+      <small class="text-danger">email is mandatory with valid domain</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Institute</label>
+    <input formControlName="institute" class="form-control" id="exampleInputEmail1"  placeholder="Enter institute name" [class.is-invalid]="signupForm.get('institute').invalid && signupForm.get('institute').touched">
+    <div *ngIf="signupForm.get('institute').errors?.required && signupForm.get('institute').touched">
+      <small class="text-danger">Institute is mandatory</small>
+    </div>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <div *ngIf="signupForm.get('password').errors?.required && signupForm.get('password').touched">
+      <small class="text-danger">Password is mandatory</small>
+    </div>
+    <div *ngIf="signupForm.get('password').errors?.pattern && signupForm.get('password').touched">
+      <small class="text-danger">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input formControlName="confirm_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="confirm_Password">
+    <div *ngIf="signupForm.errors?.misMatch && signupForm.get('confirm_password').touched">
+      <small class="text-danger">Password Mismatch, Fill once again correctly</small>
+    </div>
+  </div>
+ 
+  <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid" >Submit</button>
+</form>
+</div>
+
+<div *ngIf="show">
+  <div>{{result}}</div>
+  <button class="btn btn-primary" (click)="login()">Login</button>
+</div>
