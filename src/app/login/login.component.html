@@ -1,15 +1,46 @@
+<div id="login">
+    <div class="login-box">
+        <h1>Login</h1>
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+      <div class="text-box">
+          <i class="fas fa-user"></i>
     <input formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
+      <div class="text-box">
+          <i class="fas fa-lock"></i>
     <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
   </div>
  
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn">Submit</button>
 </form>
 
 <div>New Member?</div>
 <button class="btn btn-primary">signup</button>
+</div>
+</div>
+
+<!--
+<div id="login">
+
+  <div class="login-box">
+    <h1>Login</h1>
+
+    <div class="text-box">
+        <i class="fas fa-user"></i>
+      <input type="text" placeholder="Username" name="" value="">
+    </div>
+
+    <div class="text-box">
+        <i class="fas fa-lock"></i>
+      <input type="password" placeholder="Password" name="" value="">
+    </div>
+
+    <input type="button" class="btn" name="" value="login">
+  </div>
+  
+</div>
+-->

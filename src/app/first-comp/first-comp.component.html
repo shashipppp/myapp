@@ -13,26 +13,21 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                       <div class="card-deck">
-                              <div class="card" (click)="cardView(card)" data-toggle="modal" data-target="#exampleModalLong" *ngFor="let card of cards">
+                              <div class="card" (click)="cardView(card)" data-toggle="modal" data-target="#exampleModalLong" *ngFor="let card of card01">
                         <mat-card class="example-card" >
                           <mat-card-header>
                             <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-title>{{card.title}}</mat-card-title>
-                            <mat-card-subtitle>{{card.title}}</mat-card-subtitle>
+                            <mat-card-title>{{card.type}}</mat-card-title>
                           </mat-card-header>
-                          <img mat-card-image src="http://localhost:3000/card_image/2019-04-07T19-57-20-Shrish198.jpg" alt="Photo of a Shiba Inu">
+                          <img mat-card-image src={{card.photoPath}} alt="Photo of a Shiba Inu">
                           <mat-card-content>
                             <p>
-                              {{card.content}}
+                              {{card.summary}}
                             </p>
                           </mat-card-content>
-                          <mat-card-actions>
-                            <button mat-button>LIKE</button>
-                            <button mat-button>SHARE</button>
-                          </mat-card-actions>
                           <mat-card-footer>
                               <div class="card-footer">
-                                  <small class="text-muted">Last updated {{card.time}} mins ago</small>
+                                  <button class="btn btn-info" (click)="view_design(card.id,card.type)">Select</button>
                                 </div>
                           </mat-card-footer>
                         </mat-card>
@@ -41,7 +36,7 @@
                 </div>
                 <div class="carousel-item">
                       <div class="card-deck">
-                              <div class="card" *ngFor="let card of cards">
+                              <div class="card" (click)="cardView(card)" data-toggle="modal" data-target="#exampleModalLong" *ngFor="let card of card02">
                         <mat-card class="example-card" >
                           <mat-card-header>
                             <div mat-card-avatar class="example-header-image"></div>
@@ -69,7 +64,7 @@
                 </div>
                 <div class="carousel-item">
                       <div class="card-deck">
-                              <div class="card" *ngFor="let card of cards">
+                              <div class="card" (click)="cardView(card)" data-toggle="modal" data-target="#exampleModalLong" *ngFor="let card of card03">
                         <mat-card class="example-card" >
                           <mat-card-header>
                             <div mat-card-avatar class="example-header-image"></div>
@@ -106,7 +101,20 @@
             </div>
         
       </div>
-     <div #text> Hi this @Viewchild</div>
+     
+      <!--Nav-->
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+      </div>
       
       <!-- Modal -->
 <div *ngIf="card" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

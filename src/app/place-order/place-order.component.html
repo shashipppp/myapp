@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div *ngFor="let src of main_imageSrc">
+        <img src="{{src}}" class="img-thumbnail" alt="Cup img">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div>
+        <h3>{{type}}</h3>
+        <div *ngFor="let prc of price">
+          <h4>Price: {{prc}}rs</h4>
+        </div>
+        <div *ngFor="let des of description">
+          <h4>Description: </h4>
+          <h5>{{des}}</h5>
+        </div>
+
+      </div>
+
+
+      <div class="input-group">
+        <select class="custom-select" id="inputGroupSelect04" #color [(ngModel)]="selectedColor"
+          (change)="changeColor(color.value)">
+          <option selected value="0">Choose color....</option>
+          <option *ngFor="let color of colors" value="{{color}}">{{color}}</option>
+        </select>
+      </div>
+
+      <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+      <img [src]="imgURL" height="200" *ngIf="imgURL">
+      <span style="color:red;" *ngIf="err_message">{{err_message}}</span>
+      <span><button *ngIf="imgURL" class="pull-right" (click)="img_upload(file)">Upload</button></span>
+    </div>
+  </div>
+
+  <!--
+  <div>
+    <h4>Sample images: </h4>
+    <div class="card-deck">
+      <div class="card" *ngFor="let sample of samples">
+        <div class="row align-items-left">
+          <div class="col-sm-8"><img class="card-img-top" src="{{sample.imgSrc}}" alt="sample image"></div>
+          <div class="col-sm-4">
+            <div ><img class="sub-img" src="{{sample.sub_imgSrc[0]}}" alt="sample image"></div>
+            <div ><img class="sub-img" src="{{sample.sub_imgSrc[1]}}" alt="sample image"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{sample.label}}</h5>
+        </div>
+        <div class="card-footer">
+          <button (click)="add_to_cart()" data-toggle="modal" data-target="#exampleModal"> Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+-->
+<!---->
+  <div>
+    <h4 #sample class="samples">Sample images: </h4>
+    
+      <div class="card" *ngFor="let sample of samples">
+          <div class="top-section">
+              <img #image_container src="{{sample.imgSrc}}" alt="">
+              <div class="nav">
+                <img (click)="change_img0(sample)" src="{{sample.sub_imgSrc[0]}}" alt="">
+                <img (click)="change_img1(sample)" src="{{sample.sub_imgSrc[1]}}" alt="">
+            
+              </div>
+              <div class="price">$80</div>
+            </div>
+          
+            <div class="product-info">
+              <div class="name">Normal Coffee Cup</div>
+              <div class="dis">{{sample.label}}</div>
+              <a class="btn" href="#">Add to Cart</a>
+            </div>
+      </div>
+  
+  </div>
+
+  <!--Modal View-->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{add_cart_message}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Go to Cart</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>

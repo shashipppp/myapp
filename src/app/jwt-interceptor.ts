@@ -21,11 +21,12 @@ export class JwtInterceptor implements HttpInterceptor {
     //how to update the request Parameters
     let currentUser = JSON.parse(sessionStorage.getItem('myapp_user'));
     if(currentUser){
-    const updatedRequest = request.clone({
+     request = request.clone({
      headers: request.headers.set("Authorization", `${currentUser.Token}`)
     });
+  };
     //logging the updated Parameters to browser's console
-    console.log("Before making api call : ", updatedRequest);
+    console.log("Before making api call : ", request);
   
     return next.handle(request).pipe(
       tap(
@@ -43,6 +44,6 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       )
     );
-      }else{ console.log('no token available');}
+      
   }
 }

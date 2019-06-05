@@ -43,15 +43,19 @@ export class PostDetailComponent implements OnInit,OnChanges {
     console.log(this.card_image);
     const image = this.card_image.nativeElement;
     const ImageFile:File = image.files[0];
+    
+    const currentUser = JSON.parse(sessionStorage.getItem('myapp_user'));
+    const created_by = currentUser.USERID;
 
     const formData = new FormData();
-    formData.append('title', formValue.email);
+    formData.append('title', formValue.title);
     formData.append('summary',formValue.summary);
     formData.append('content',formValue.content);
     formData.append('category',formValue.category);
     formData.append('parental_view',formValue.parental_view);
     formData.append('approved',formValue.approved);
     formData.append('image',ImageFile,ImageFile.name);
+    formData.append('created_by', created_by);
     this.cardService.cardPost(formData).subscribe((res:HttpResponse<any>)=>{
       console.log(res);
       this.success = true;

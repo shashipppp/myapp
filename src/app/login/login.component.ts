@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  backgroundUrl ="assets/images/eiffel.jpg"
 
   constructor(private fb:FormBuilder, private loginService: LoginService, private router:Router) { }
 

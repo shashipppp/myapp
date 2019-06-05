@@ -5,25 +5,23 @@ const validationResult = require('express-validator/check');
 
 exports.cards_get_all = (req,res,next)=>{
    
-    Card.find().exec().then(docs=>{
+    Card.find().select({card_type:1,card_summary:1,imageUrl:1}).exec().then(docs=>{
         const response = {
             count: docs.length,
             Cards: docs.map(doc=>{
                 return {
-                    title: doc.title,
-                    content: doc.content,
-                    summary: doc.summary,
-                    created_date: doc.created_date,
-                    created_by: doc.created_by,
-                    photoPath: doc.photoPath,
+                    type: doc.card_type,
+                    summary: doc.card_summary,
+                    photoPath: doc.imageUrl,
                     id: doc._id
                 }
             })
 
         }
         res.status(200).json(response);
+        //console.log(response);
     })
-    .catch(err=>{});
+    .catch(err=>{ throw err});
 }
 
 exports.card_post = (req,res,next)=> {
@@ -55,11 +53,12 @@ exports.card_post = (req,res,next)=> {
         newCard.summary = req.body.summary;
         newCard.created_by = req.body.created_by;
         newCard.created_date = new Date().toGMTString();
-        newCard.imageUrl = req.file.path;
+        newCard.imageUrl = req.file.filename;
         newCard.parental_view = req.body.parental_view;
         newCard.approved = false;
         newCard.category = req.body.category;
         
+        console.log('req.file: '+req.file.filename);
         newCard.save((err,inserted_data)=>{
             
             if(err){
@@ -77,5 +76,14 @@ exports.card_post = (req,res,next)=> {
     };
     return Joi.validate(reqData,schema);
     }   
+}
+
+exports.getCard_byType = (req,res,next)=>{
+    const card_id = req.get('selected_card');
+    const color = req.get('selected_color');
+    
+    Card.findOne({_id:card_id}).select({design:{$elemMatch:{"color":color}}}).exec()
+         .then((doc)=>{console.log(doc);res.status(200).json(doc.design[0]); })
+         .catch(err=>console.log('error in fecthing white color '+err));
 }
 
